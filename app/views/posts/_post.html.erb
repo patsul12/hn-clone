@@ -3,4 +3,7 @@
   <i>posted: <%= post.post_date %></i>
   <br>
   <i>author: <%= post.author.name %></i>
+  <div class="comments-count">
+    <%= link_to post.comments.length.to_s + " comments", post_path(post) %>
+  </div>
 </div>

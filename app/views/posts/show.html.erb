@@ -20,18 +20,25 @@
 <% end %>
 <% @post.comments.each do |comment| %>
   <% if comment.parent == nil %>
-    "<%= comment.content %>"<br>
-    <i>posted at: <%= comment.created_at %></i><br>
-    <i>Author:</i> <%= comment.author.name %><br>
-    <%= link_to 'Reply', post_comment_path(@post, comment) %><br><br>
-    <% comment.walk_tree do |comment, level| %>
-    <% @margin = "margin-left:"+(level * 40).to_s+"px;" %>
-    <div style=<%= @margin %>>
-        "<%= comment.content %>"<br>
-        <i>posted at: <%= comment.created_at %></i><br>
-        <i>Author:</i> <%= comment.author.name %><br>
-        <%= link_to 'Reply', post_comment_path(@post, comment) %><br><br>
+    <div class="comment">
+      "<%= comment.content %>"<br>
+      <i>posted at: <%= comment.created_at %></i><br>
+      <i>Author:</i> <%= comment.author.name %><br>
+      <%= link_to 'Reply', post_comment_path(@post, comment) %><br><br>
     </div>
+    <% comment.walk_tree do |comment, level| %>
+      <% @margin= "margin-left:"+(level * 40).to_s+"px;" %>
+      <% @class="color"+(((level+1) % 6 == 0 ? 1 : level + 1)).to_s %>
+      <div style=<%= @margin %>>
+        <div class="comment">
+          <div class=<%= @class %>>
+            "<%= comment.content %>"<br>
+            <i>posted at: <%= comment.created_at %></i><br>
+            <i>Author:</i> <%= comment.author.name %><br>
+            <%= link_to 'Reply', post_comment_path(@post, comment) %><br><br>
+          </div>
+        </div>
+      </div>
     <% end %>
   <% end %>
 <% end %>
