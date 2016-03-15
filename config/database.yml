@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: hn-clone_development
+
+test:
+  <<: *default
+  database: hn-clone_test
+
+production:
+  <<: *default
+  database: hn-clone_production
+  username: hn-clone
+  password: <%= ENV['HN-CLONE_DATABASE_PASSWORD'] %>

@@ -1,0 +1,9 @@
+Documentation:
+    Enabled: false
+
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'script/**/*'
+    - 'app/views/*'
