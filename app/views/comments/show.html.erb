@@ -1,0 +1,26 @@
+
+<%= @comment.content %>
+
+<%= link_to "Edit", edit_post_comment_path(@post, @comment) %> |
+<%= link_to(post_comment_path(@post, @comment),
+  data: {
+    confirm: 'You sure?',
+    method: 'delete'
+  }
+) do %>
+  Delete
+<% end %>
+<%= form_tag(controller: "comments", action: "create", method: "post") do %>
+  <%= hidden_field_tag :author_id, current_author.id %>
+  <%= hidden_field_tag :post_id, @post.id %>
+  <%= hidden_field_tag :parent_id, @comment.id %>
+  <%= text_area_tag :content %>
+  <%= submit_tag "reply" %>
+<% end %>
+
+<% @comment.children.each do |comment| %>
+  "<%= comment.content %>"<br>
+  <i>posted at: <%= comment.created_at %></i><br>
+  <i>Author:</i> <%= comment.author.name %><br>
+  <%= link_to 'Reply', post_comment_path(@post, comment) %><br><br>
+<% end %>

@@ -1,5 +1,5 @@
 class Comment < ActiveRecord::Base
-  extend ActsAsTree::TreeView
+  extend ActsAsTree::TreeWalker
   validates :content, presence: true
   belongs_to :author
   belongs_to :post

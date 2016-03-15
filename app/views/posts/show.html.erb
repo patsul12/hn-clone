@@ -19,5 +19,19 @@
   <%= submit_tag "Add a Comment" %>
 <% end %>
 <% @post.comments.each do |comment| %>
-  <%= comment.content %>
+  <% if comment.parent == nil %>
+    "<%= comment.content %>"<br>
+    <i>posted at: <%= comment.created_at %></i><br>
+    <i>Author:</i> <%= comment.author.name %><br>
+    <%= link_to 'Reply', post_comment_path(@post, comment) %><br><br>
+    <% comment.walk_tree do |comment, level| %>
+    <% @margin = "margin-left:"+(level * 40).to_s+"px;" %>
+    <div style=<%= @margin %>>
+        "<%= comment.content %>"<br>
+        <i>posted at: <%= comment.created_at %></i><br>
+        <i>Author:</i> <%= comment.author.name %><br>
+        <%= link_to 'Reply', post_comment_path(@post, comment) %><br><br>
+    </div>
+    <% end %>
+  <% end %>
 <% end %>
