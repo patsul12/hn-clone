@@ -1,3 +1,6 @@
 <div class="col-md-8 col-center post-tile">
   <h3><%= link_to post.title, post_path(post) %></h3>
+  <i>posted: <%= post.post_date %></i>
+  <br>
+  <i>author: <%= post.author.name %></i>
 </div>

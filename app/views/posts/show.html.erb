@@ -1,4 +1,9 @@
 <%= @post.title %>
+<br>
+<i>posted at: <%= @post.post_date %></i>
+<br><br>
+<%= @post.content %>
+<br>
 <%= link_to "Edit", edit_post_path(@post) %> |
 <%= link_to(post_path(@post),
   data: {
