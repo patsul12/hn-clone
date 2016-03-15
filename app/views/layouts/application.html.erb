@@ -20,8 +20,8 @@
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li><%= link_to 'New Post', new_post_path %></li>
         <% if author_signed_in? %>
+          <li><%= link_to 'New Post', new_post_path %></li>
           <li><%= link_to 'Sign Out', destroy_author_session_path, method: :delete %></li>
         <% else %>
           <li><%= link_to 'Sign In', new_author_session_path, method: :get %></li>
