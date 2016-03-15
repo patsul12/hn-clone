@@ -1,5 +1,7 @@
 class Comment < ActiveRecord::Base
-  validates :content, :post_date, presence: true
+  extend ActsAsTree::TreeView
+  validates :content, presence: true
   belongs_to :author
   belongs_to :post
+  acts_as_tree order: 'created_at'
 end

@@ -9,6 +9,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'devise'
+gem 'acts_as_tree'
 
 group :development do
   gem 'byebug'

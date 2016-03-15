@@ -13,3 +13,11 @@
 ) do %>
   Delete
 <% end %>
+<%= form_tag(post_comments_path(@post), method: "post") do %>
+  <%= hidden_field_tag :author_id, current_author.id %>
+  <%= text_field_tag :content %>
+  <%= submit_tag "Add a Comment" %>
+<% end %>
+<% @post.comments.each do |comment| %>
+  <%= comment.content %>
+<% end %>
